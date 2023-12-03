@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import Supabase
 
 struct RegistrationView: View {
     
-    @State var username = ""
+    @State var email = ""
     @State var password = ""
     @State var confirmPassword = ""
+    @EnvironmentObject var viewModel: LoginView.ViewModel
+    @Binding var user: User?
+    @State var presentAlert = false
     
     var body: some View {
         NavigationStack {
@@ -22,8 +26,8 @@ struct RegistrationView: View {
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                 Spacer()
-                TextField(text: $username, label: {
-                    Text("Username")
+                TextField(text: $email, label: {
+                    Text("Email")
                 })
                 .textFieldStyle(.roundedBorder)
                 .padding(.horizontal, 50)
@@ -45,21 +49,31 @@ struct RegistrationView: View {
                 Spacer()
                 Spacer()
                 Button(action: {
-                    //Register
+                    Task {
+                        let registrationAttempt = await viewModel.signUp(email: email, password: password)
+                        switch registrationAttempt  {
+                            case .success(let currentUser): user = currentUser
+                            case .failure(_): presentAlert = true
+                        }
+                    }
                 }, label: {
                     Text("Register")
                         .font(.title3)
                         .foregroundColor(.white)
                         .frame(width: 100, height: 50)
-                        .background(Color.blue)
+                        .background((email == "" || password == "" || confirmPassword == "" || (confirmPassword != password)) ? .gray : .blue)
                         .cornerRadius(10)
                 })
+                .disabled(email == "" || password == "" || confirmPassword == "" || (confirmPassword != password))
                 Spacer()
             }
+            .alert(isPresented: $presentAlert, content: {
+                Alert(title: Text("Failed registration"))
+            })
         }
     }
 }
 
 #Preview {
-    RegistrationView()
+    RegistrationView(user: .constant(nil))
 }

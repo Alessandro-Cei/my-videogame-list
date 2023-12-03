@@ -6,11 +6,20 @@
 //
 
 import SwiftUI
+import Supabase
 
 struct ContentView: View {
+    
+    @State var user: User?
+    
     var body: some View {
-        LoginView()
+        if (user != nil) {
+            
+        } else {
+            LoginView(user: $user)
+        }
     }
+    
 }
 
 #Preview {

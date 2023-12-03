@@ -13,6 +13,10 @@
 		D2715A672B1B462500343DAB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2715A662B1B462500343DAB /* Preview Assets.xcassets */; };
 		D2715A6E2B1B60BB00343DAB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2715A6D2B1B60BB00343DAB /* LoginView.swift */; };
 		D2715A702B1B60CC00343DAB /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2715A6F2B1B60CC00343DAB /* RegistrationView.swift */; };
+		D2715A762B1B66D700343DAB /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = D2715A752B1B66D700343DAB /* Functions */; };
+		D2715A782B1B66D700343DAB /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = D2715A772B1B66D700343DAB /* Supabase */; };
+		D2715A7A2B1B672900343DAB /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2715A792B1B672900343DAB /* LoginViewModel.swift */; };
+		D2715A7D2B1D29FF00343DAB /* Enumerations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2715A7C2B1D29FF00343DAB /* Enumerations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +27,8 @@
 		D2715A662B1B462500343DAB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D2715A6D2B1B60BB00343DAB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D2715A6F2B1B60CC00343DAB /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		D2715A792B1B672900343DAB /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		D2715A7C2B1D29FF00343DAB /* Enumerations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enumerations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,6 +36,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2715A782B1B66D700343DAB /* Supabase in Frameworks */,
+				D2715A762B1B66D700343DAB /* Functions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,10 +64,11 @@
 			isa = PBXGroup;
 			children = (
 				D2715A5F2B1B462400343DAB /* My_Videogame_ListApp.swift */,
-				D2715A612B1B462400343DAB /* ContentView.swift */,
-				D2715A6D2B1B60BB00343DAB /* LoginView.swift */,
-				D2715A6F2B1B60CC00343DAB /* RegistrationView.swift */,
+				D2715A712B1B653B00343DAB /* Models */,
+				D2715A722B1B654200343DAB /* Views */,
+				D2715A732B1B654800343DAB /* ViewModels */,
 				D2715A632B1B462500343DAB /* Assets.xcassets */,
+				D2715A7B2B1D29EF00343DAB /* Supporting Files */,
 				D2715A652B1B462500343DAB /* Preview Content */,
 			);
 			path = "My Videogame List";
@@ -71,6 +80,39 @@
 				D2715A662B1B462500343DAB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D2715A712B1B653B00343DAB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D2715A722B1B654200343DAB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D2715A612B1B462400343DAB /* ContentView.swift */,
+				D2715A6D2B1B60BB00343DAB /* LoginView.swift */,
+				D2715A6F2B1B60CC00343DAB /* RegistrationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D2715A732B1B654800343DAB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D2715A792B1B672900343DAB /* LoginViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D2715A7B2B1D29EF00343DAB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2715A7C2B1D29FF00343DAB /* Enumerations.swift */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,6 +131,10 @@
 			dependencies = (
 			);
 			name = "My Videogame List";
+			packageProductDependencies = (
+				D2715A752B1B66D700343DAB /* Functions */,
+				D2715A772B1B66D700343DAB /* Supabase */,
+			);
 			productName = "My Videogame List";
 			productReference = D2715A5C2B1B462400343DAB /* My Videogame List.app */;
 			productType = "com.apple.product-type.application";
@@ -117,6 +163,9 @@
 				Base,
 			);
 			mainGroup = D2715A532B1B462400343DAB;
+			packageReferences = (
+				D2715A742B1B66D700343DAB /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			productRefGroup = D2715A5D2B1B462400343DAB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -146,7 +195,9 @@
 				D2715A6E2B1B60BB00343DAB /* LoginView.swift in Sources */,
 				D2715A622B1B462400343DAB /* ContentView.swift in Sources */,
 				D2715A602B1B462400343DAB /* My_Videogame_ListApp.swift in Sources */,
+				D2715A7A2B1B672900343DAB /* LoginViewModel.swift in Sources */,
 				D2715A702B1B60CC00343DAB /* RegistrationView.swift in Sources */,
+				D2715A7D2B1D29FF00343DAB /* Enumerations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +403,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D2715A742B1B66D700343DAB /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase-community/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D2715A752B1B66D700343DAB /* Functions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2715A742B1B66D700343DAB /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Functions;
+		};
+		D2715A772B1B66D700343DAB /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D2715A742B1B66D700343DAB /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D2715A542B1B462400343DAB /* Project object */;
 }
