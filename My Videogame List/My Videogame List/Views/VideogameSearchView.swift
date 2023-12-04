@@ -9,36 +9,46 @@ import SwiftUI
 
 struct VideogameSearchView: View {
     
-    @StateObject var viewModel = ViewModel()
+    @StateObject private var viewModel = ViewModel()
     @State var isPresented = false
+    @State private var isAlertPresented = false
     @State var focusedGame: Game = Game(name: "", backgroundImage: "")
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Text("Videogames List")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                ScrollView {
-                    ForEach(viewModel.gameList, id: \.self) { game in
-                        VideogameRow(urlString: game.backgroundImage, title: game.name)
-                            .frame(height: 100)
-                            .onTapGesture {
-                                focusedGame = game
-                                isPresented = true
+            List {
+                ForEach(viewModel.gameList, id: \.self) { game in
+                    VideogameRow(urlString: game.backgroundImage, title: game.name)
+                        .frame(height: 100)
+                        .onAppear() {
+                            //Pagination
+                            if game == viewModel.gameList.last {
+                                viewModel.loadData()
                             }
-                    }
+                        }
+                        .onTapGesture {
+                            //Open game detail
+                            focusedGame = game
+                            isPresented = true
+                        }
                 }
-                .redacted(reason: viewModel.gameList.isEmpty ? .placeholder : [])
-                
             }
-            .onAppear() {
-                //            Task {
-                //                await viewModel.fetchVideogames()
-                //            }
+            .redacted(reason: viewModel.gameList.isEmpty ? .placeholder : [])
+            .refreshable {
+                viewModel.refreshVideogames()
             }
-            
+            .onReceive(viewModel.$error, perform: { error in
+                if (error != nil) {
+                    isAlertPresented.toggle()
+                }
+            })
+            .alert(isPresented: $isAlertPresented, content: {
+                Alert(
+                    title: Text("Error"),
+                    message: Text(viewModel.error?.localizedDescription ?? "")
+                )
+            })
+            .navigationTitle("Videogames List")
         }
         .sheet(isPresented: $isPresented){
             NavigationStack {
