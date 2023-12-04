@@ -12,8 +12,8 @@ extension LoginView {
     
     class ViewModel: ObservableObject {
         
-        let databaseURL = "DATABASE_URL"
-        let databaseKey = "DATABASE_KEY"
+        let databaseURL = "https://repwapoydvwdlrzbfwmi.supabase.co"
+        let databaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJlcHdhcG95ZHZ3ZGxyemJmd21pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDE1MjEwOTIsImV4cCI6MjAxNzA5NzA5Mn0.bTeQbGghC_21IxUKdnkDvOSQ46xudwtm1vMAgbsL43g"
                 
         func signIn(email mail:String, password psw:String) async -> LoginResult {
             

@@ -13,8 +13,8 @@ struct ContentView: View {
     @State var user: User?
     
     var body: some View {
-        if (user != nil) {
-            
+        if (user == nil) {
+            VideogameSearchView()
         } else {
             LoginView(user: $user)
         }
