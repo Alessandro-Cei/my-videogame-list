@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D21E953A2B1F394E000161FE /* Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21E95392B1F394E000161FE /* Private.swift */; };
 		D232606D2B1D4C0D009D098A /* AddVideogameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D232606C2B1D4C0D009D098A /* AddVideogameView.swift */; };
 		D232606F2B1D4FAE009D098A /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = D232606E2B1D4FAE009D098A /* Game.swift */; };
 		D23260712B1D4FB8009D098A /* GamesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23260702B1D4FB8009D098A /* GamesList.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D21E95392B1F394E000161FE /* Private.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Private.swift; sourceTree = "<group>"; };
 		D232606C2B1D4C0D009D098A /* AddVideogameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVideogameView.swift; sourceTree = "<group>"; };
 		D232606E2B1D4FAE009D098A /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		D23260702B1D4FB8009D098A /* GamesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesList.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				D2715A7C2B1D29FF00343DAB /* Enumerations.swift */,
+				D21E95392B1F394E000161FE /* Private.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D232606D2B1D4C0D009D098A /* AddVideogameView.swift in Sources */,
+				D21E953A2B1F394E000161FE /* Private.swift in Sources */,
 				D2715A6E2B1B60BB00343DAB /* LoginView.swift in Sources */,
 				D2715A622B1B462400343DAB /* ContentView.swift in Sources */,
 				D2715A602B1B462400343DAB /* My_Videogame_ListApp.swift in Sources */,

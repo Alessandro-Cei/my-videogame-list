@@ -13,7 +13,7 @@ extension VideogameSearchView {
         
         @Published var gameList: [Game] = []
         @Published var error: Error?
-        private let APIKey = "API_KEY"
+        private let APIKey = Private.APIKey
         private var page = 0
         init() {
             //loadData()
