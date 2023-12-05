@@ -14,7 +14,16 @@ struct ContentView: View {
     
     var body: some View {
         if (user == nil) {
-            VideogameSearchView()
+            TabView {
+                VideogameSearchView()
+                    .tabItem {
+                        Label("Search", systemImage: "magnifyingglass")
+                    }
+                CollectionView()
+                    .tabItem {
+                        Label("Collection", systemImage: "folder")
+                    }
+            }
         } else {
             LoginView(user: $user)
         }

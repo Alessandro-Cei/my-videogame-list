@@ -7,9 +7,11 @@
 
 import SwiftUI
 
-struct AddVideogameView: View {
+struct DetailView: View {
     
+    @StateObject private var viewModel = ViewModel()
     @Binding var game: Game
+    var type: ButtonType
     
     var body: some View {
         GeometryReader { geo in
@@ -26,16 +28,7 @@ struct AddVideogameView: View {
                         .cornerRadius(20)
                     Spacer()
                     Spacer()
-                    Button(action: {
-                        //Add to database
-                    }, label: {
-                        Text("Add to collection")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(.blue)
-                            .cornerRadius(10)
-                    })
+                    GameInteractionButton(type: type, interaction: type == .addGame ? viewModel.addGame : viewModel.removeGame)
                     Spacer()
                 }
                 .padding()
@@ -47,5 +40,5 @@ struct AddVideogameView: View {
 }
 
 #Preview {
-    AddVideogameView(game: .constant(Game(name: "GTA V", backgroundImage: "")))
+    DetailView(game: .constant(Game(name: "GTA V", backgroundImage: "")), type: .addGame)
 }

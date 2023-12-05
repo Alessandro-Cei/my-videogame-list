@@ -1,13 +1,13 @@
 //
-//  VideogameSearchView.swift
+//  CollectionView.swift
 //  My Videogame List
 //
-//  Created by alessandro on 03/12/23.
+//  Created by alessandro on 05/12/23.
 //
 
 import SwiftUI
 
-struct VideogameSearchView: View {
+struct CollectionView: View {
     
     @StateObject private var viewModel = ViewModel()
     @State var isPresented = false
@@ -22,9 +22,6 @@ struct VideogameSearchView: View {
                         .frame(height: 100)
                         .onAppear() {
                             //Pagination
-                            if game == viewModel.gameList.last {
-                                //viewModel.loadData()
-                            }
                         }
                         .onTapGesture {
                             //Open game detail
@@ -45,14 +42,14 @@ struct VideogameSearchView: View {
             .alert(isPresented: $isAlertPresented, content: {
                 Alert(
                     title: Text("Error"),
-                    message: Text(viewModel.error?.localizedDescription ?? "")
+                    message: Text("")
                 )
             })
-            .navigationTitle("Videogames List")
+            .navigationTitle("Your collection")
         }
         .sheet(isPresented: $isPresented){
             NavigationStack {
-                DetailView(game: $focusedGame, type: .addGame)
+                DetailView(game: $focusedGame, type: .removeGame)
                     .toolbar(content: {
                         ToolbarItem(placement: .topBarLeading) {
                             Button(role: .cancel, action: {
@@ -65,11 +62,9 @@ struct VideogameSearchView: View {
             }
             
         }
-        
-        
     }
 }
 
 #Preview {
-    VideogameSearchView()
+    CollectionView()
 }

@@ -32,3 +32,8 @@ enum GameError: Error, LocalizedError {
         }
     }
 }
+
+enum ButtonType {
+    case addGame
+    case removeGame
+}
