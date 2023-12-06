@@ -23,10 +23,10 @@ extension VideogameSearchView {
         func fetchVideogames() async throws {
             do {
                 page += 1
-                guard let apiUrl = URL(string: "https://api.rawg.io/api/games?key=\(APIKey)&page=\(page)&page_size=10") else { throw GameError.invalidURL }
+                guard let apiUrl = URL(string: "https://api.rawg.io/api/games?key=\(APIKey)&page=\(page)&page_size=10") else { throw APIError.invalidURL }
                 let (data, response) = try await URLSession.shared.data(from: apiUrl)
-                guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw GameError.serverError }
-                guard let gameResponse = try? JSONDecoder().decode(GamesList.self, from: data) else { throw GameError.invalidData }
+                guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw APIError.serverError }
+                guard let gameResponse = try? JSONDecoder().decode(GamesList.self, from: data) else { throw APIError.invalidData }
                 gameList.append(contentsOf: gameResponse.results)
             } catch {
                 self.error = error

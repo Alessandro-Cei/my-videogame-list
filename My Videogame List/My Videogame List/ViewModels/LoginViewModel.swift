@@ -12,53 +12,41 @@ extension LoginView {
     
     class ViewModel: ObservableObject {
         
-        let databaseURL = Private.databaseURL
-        let databaseKey = Private.databaseKey
-                
-        func signIn(email mail:String, password psw:String) async -> LoginResult {
-            
-            var currentUser: User?
-            guard let url = URL(string: databaseURL) else {return LoginResult.failure("Failed Login")}
+        private let databaseURL = Private.databaseURL
+        private let databaseKey = Private.databaseKey
+        @Published var error: Error?
+        @Published var user: User?
+           
+        @MainActor
+        func signIn(email mail:String, password psw:String) async throws {
+            guard let url = URL(string: databaseURL) else { throw DatabaseError.invalidURL }
             let client = SupabaseClient(supabaseURL: url, supabaseKey: databaseKey)
             do {
                 try await client.auth.signIn(email: mail, password: psw)
             } catch {
-                print("Error: failed login attempt")
+                throw DatabaseError.failedLogin
             }
             do {
-                currentUser = try await client.auth.user()
+                user = try await client.auth.user()
             } catch {
-                print("Error: failed user retrieval")
+                throw DatabaseError.failedUserRetrieval
             }
-            if currentUser != nil {
-                return LoginResult.success(currentUser!)
-            } else {
-                return LoginResult.failure("Failed Login")
-            }
-            
         }
         
-        func signUp(email mail:String, password psw:String) async -> LoginResult {
-            
-            var currentUser: User?
-            guard let url = URL(string: databaseURL) else {return LoginResult.failure("Failed Login")}
+        @MainActor
+        func signUp(email mail:String, password psw:String) async throws {
+            guard let url = URL(string: databaseURL) else { throw DatabaseError.invalidURL }
             let client = SupabaseClient(supabaseURL: url, supabaseKey: databaseKey)
             do {
                 try await client.auth.signUp(email: mail, password: psw)
             } catch {
-                print("Error: failed signup attempt")
+                throw DatabaseError.failedSignUp
             }
             do {
-                currentUser = try await client.auth.user()
+                user = try await client.auth.user()
             } catch {
-                print("Error: failed user retrieval")
+                throw DatabaseError.failedUserRetrieval
             }
-            if currentUser != nil {
-                return LoginResult.success(currentUser!)
-            } else {
-                return LoginResult.failure("Failed Login")
-            }
-            
         }
         
     }

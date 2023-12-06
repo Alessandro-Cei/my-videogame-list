@@ -14,7 +14,7 @@ struct LoginView: View {
     @State var email = ""
     @State var password = ""
     @StateObject var viewModel = ViewModel()
-    @State var presentAlert = false
+    @State private var isAlertPresented = false
     
     var body: some View {
         NavigationStack {
@@ -42,11 +42,8 @@ struct LoginView: View {
                 Spacer()
                 Button(action: {
                     Task {
-                        let loginAttempt = await viewModel.signIn(email: email, password: password)
-                        switch loginAttempt  {
-                            case .success(let currentUser): user = currentUser
-                            case .failure(_): presentAlert = true
-                        }
+                        try await viewModel.signIn(email: email, password: password)
+                        user = viewModel.user
                     }
                 }, label: {
                     Text("Login")
@@ -65,8 +62,16 @@ struct LoginView: View {
                         .cornerRadius(10)
                 })
                 Spacer()
-                    .alert(isPresented: $presentAlert, content: {
-                        Alert(title: Text("Failed login"))
+                    .onReceive(viewModel.$error, perform: { error in
+                        if (error != nil) {
+                            isAlertPresented.toggle()
+                        }
+                    })
+                    .alert(isPresented: $isAlertPresented, content: {
+                        Alert(
+                            title: Text("Error"),
+                            message: Text(viewModel.error?.localizedDescription ?? "")
+                        )
                     })
             }
         }
