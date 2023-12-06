@@ -11,6 +11,8 @@ struct DetailView: View {
     
     @StateObject private var viewModel = ViewModel()
     @Binding var game: Game
+    @Binding var isPresented: Bool
+    
     var type: ButtonType
     
     var body: some View {
@@ -28,7 +30,27 @@ struct DetailView: View {
                         .cornerRadius(20)
                     Spacer()
                     Spacer()
-                    GameInteractionButton(type: type, interaction: type == .addGame ? viewModel.addGame : viewModel.removeGame)
+                    Button(action: {
+                        switch type {
+                        case .addGame:
+                            Task {
+                                try await viewModel.addGame(gameId: game.gameId)
+                                isPresented.toggle()
+                            }
+                        case .removeGame:
+                            Task {
+                                try await viewModel.removeGame(gameId: game.gameId)
+                                isPresented.toggle()
+                            }
+                        }
+                    }, label: {
+                        Text(type == .addGame ? "Add to collection" : "Remove from collection")
+                            .font(.title3)
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(.blue)
+                            .cornerRadius(10)
+                    })
                     Spacer()
                 }
                 .padding()
@@ -40,5 +62,5 @@ struct DetailView: View {
 }
 
 #Preview {
-    DetailView(game: .constant(Game(name: "GTA V", backgroundImage: "")), type: .addGame)
+    DetailView(game: .constant(Game(gameId: 3498, name: "GTA V", backgroundImage: "")), isPresented: .constant(true), type: .addGame)
 }

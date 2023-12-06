@@ -12,7 +12,7 @@ struct CollectionView: View {
     @StateObject private var viewModel = ViewModel()
     @State var isPresented = false
     @State private var isAlertPresented = false
-    @State var focusedGame: Game = Game(name: "", backgroundImage: "")
+    @State var focusedGame: Game = Game(gameId: 3498, name: "", backgroundImage: "")
     
     var body: some View {
         NavigationStack {
@@ -32,7 +32,7 @@ struct CollectionView: View {
             }
             .redacted(reason: viewModel.gameList.isEmpty ? .placeholder : [])
             .refreshable {
-                //viewModel.refreshVideogames()
+                viewModel.refreshVideogames()
             }
             .onReceive(viewModel.$error, perform: { error in
                 if (error != nil) {
@@ -49,7 +49,7 @@ struct CollectionView: View {
         }
         .sheet(isPresented: $isPresented){
             NavigationStack {
-                DetailView(game: $focusedGame, type: .removeGame)
+                DetailView(game: $focusedGame, isPresented: $isPresented, type: .removeGame)
                     .toolbar(content: {
                         ToolbarItem(placement: .topBarLeading) {
                             Button(role: .cancel, action: {

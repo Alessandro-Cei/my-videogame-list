@@ -52,6 +52,12 @@ extension CollectionView {
             }
         }
         
+        func refreshVideogames() {
+            gameList.removeAll()
+            gameIDs.removeAll()
+            loadData()
+        }
+        
     }
     
 }

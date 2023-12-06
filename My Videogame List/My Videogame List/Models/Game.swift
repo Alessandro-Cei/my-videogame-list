@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct Game: Codable, Hashable {
+    var gameId: Int
     let name: String
     let backgroundImage: String
 
     enum CodingKeys: String, CodingKey {
+        case gameId = "id"
         case name = "name"
         case backgroundImage = "background_image"
     }

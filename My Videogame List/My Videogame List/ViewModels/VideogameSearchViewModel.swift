@@ -16,7 +16,7 @@ extension VideogameSearchView {
         private let APIKey = Private.APIKey
         private var page = 0
         init() {
-            //loadData()
+            loadData()
         }
         
         @MainActor

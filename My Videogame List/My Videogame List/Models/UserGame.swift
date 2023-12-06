@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-struct UserGame: Codable, Identifiable, Hashable {
-    var id: UUID
+struct UserGame: Codable, Hashable {
+    
+    var userId: UUID
     var gameId: String
     
     enum CodingKeys: String, CodingKey {
-        case id = "user_id"
+        case userId = "user_id"
         case gameId = "game_id"
     }
 }

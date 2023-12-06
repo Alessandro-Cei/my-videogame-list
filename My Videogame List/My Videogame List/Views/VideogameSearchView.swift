@@ -12,7 +12,7 @@ struct VideogameSearchView: View {
     @StateObject private var viewModel = ViewModel()
     @State var isPresented = false
     @State private var isAlertPresented = false
-    @State var focusedGame: Game = Game(name: "", backgroundImage: "")
+    @State var focusedGame: Game = Game(gameId: 3498, name: "", backgroundImage: "")
     
     var body: some View {
         NavigationStack {
@@ -23,7 +23,7 @@ struct VideogameSearchView: View {
                         .onAppear() {
                             //Pagination
                             if game == viewModel.gameList.last {
-                                //viewModel.loadData()
+                                viewModel.loadData()
                             }
                         }
                         .onTapGesture {
@@ -35,7 +35,7 @@ struct VideogameSearchView: View {
             }
             .redacted(reason: viewModel.gameList.isEmpty ? .placeholder : [])
             .refreshable {
-                //viewModel.refreshVideogames()
+                viewModel.refreshVideogames()
             }
             .onReceive(viewModel.$error, perform: { error in
                 if (error != nil) {
@@ -52,7 +52,7 @@ struct VideogameSearchView: View {
         }
         .sheet(isPresented: $isPresented){
             NavigationStack {
-                DetailView(game: $focusedGame, type: .addGame)
+                DetailView(game: $focusedGame, isPresented: $isPresented, type: .addGame)
                     .toolbar(content: {
                         ToolbarItem(placement: .topBarLeading) {
                             Button(role: .cancel, action: {
