@@ -108,8 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				D232606E2B1D4FAE009D098A /* Game.swift */,
-				D2AE5EC32B1FAA8800AAB740 /* UserGame.swift */,
 				D23260702B1D4FB8009D098A /* GamesList.swift */,
+				D2AE5EC32B1FAA8800AAB740 /* UserGame.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -130,10 +130,10 @@
 		D2715A732B1B654800343DAB /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				D2AE5EC02B1F42C500AAB740 /* DetailViewModel.swift */,
 				D2715A792B1B672900343DAB /* LoginViewModel.swift */,
-				D2AE5EBA2B1F3D1600AAB740 /* CollectionViewModel.swift */,
 				D2715A822B1D2C1200343DAB /* VideogameSearchViewModel.swift */,
+				D2AE5EBA2B1F3D1600AAB740 /* CollectionViewModel.swift */,
+				D2AE5EC02B1F42C500AAB740 /* DetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";

@@ -39,6 +39,11 @@ struct CollectionView: View {
                     isAlertPresented.toggle()
                 }
             })
+            .onChange(of: isPresented) { oldState, newState in
+                if newState == false && !viewModel.gameList.isEmpty {
+                    viewModel.refreshVideogames()
+                }
+            }
             .alert(isPresented: $isAlertPresented, content: {
                 Alert(
                     title: Text("Error"),
