@@ -29,5 +29,5 @@ struct VideogameRow: View {
 }
 
 #Preview {
-    VideogameRow(urlString: "https://fastly.picsum.photos/id/776/200/200.jpg?hmac=Rq9krBqm0Qss3AbgE4BjL1Iu891xLPTkf1xNf0ezp38", title: "Ciao")
+    VideogameRow(urlString: "https://fastly.picsum.photos/id/776/200/200.jpg?hmac=Rq9krBqm0Qss3AbgE4BjL1Iu891xLPTkf1xNf0ezp38", title: "GTAV")
 }
