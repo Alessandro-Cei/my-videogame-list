@@ -17,13 +17,16 @@ struct VideogameSearchView: View {
     var body: some View {
         NavigationStack {
             VStack (spacing: 0) {
-                TextField(text: $viewModel.search, label: {
-                    Text("Search")
+                LabeledContent(content: {
+                    TextField("Searchbar", text: $viewModel.search, prompt: Text("Search"))
+                }, label: {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(Color(UIColor.systemGray))
                 })
                 .padding(5)
                 .background(.white)
                 .cornerRadius(5)
-                .overlay(RoundedRectangle(cornerRadius: 5).stroke(lineWidth: 1).foregroundColor(Color(UIColor.systemGray3)))
+                .overlay(RoundedRectangle(cornerRadius: 5).stroke(lineWidth: 1).foregroundColor(Color(UIColor.systemGray4)))
                 .padding(.horizontal)
                 .padding(.top, 10)
                 .padding(.bottom, 1)
