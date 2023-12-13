@@ -13,6 +13,7 @@ extension VideogameSearchView {
         
         @Published var gameList: [Game] = []
         @Published var error: Error?
+        @Published var search = ""
         private let APIKey = Private.APIKey
         private var page = 0
         init() {
@@ -23,7 +24,7 @@ extension VideogameSearchView {
         func fetchVideogames() async throws {
             do {
                 page += 1
-                guard let apiUrl = URL(string: "https://api.rawg.io/api/games?key=\(APIKey)&page=\(page)&page_size=10") else { throw APIError.invalidURL }
+                guard let apiUrl = URL(string: "https://api.rawg.io/api/games?key=\(APIKey)&page=\(page)&page_size=10&search=\(search)") else { throw APIError.invalidURL }
                 let (data, response) = try await URLSession.shared.data(from: apiUrl)
                 guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw APIError.serverError }
                 guard let gameResponse = try? JSONDecoder().decode(GamesList.self, from: data) else { throw APIError.invalidData }
