@@ -30,7 +30,7 @@ struct VideogameSearchView: View {
                 .padding(.horizontal)
                 .padding(.top, 10)
                 .padding(.bottom, 1)
-                .onChange(of: viewModel.search) {
+                .onChange(of: viewModel.debouncedSearch) {
                     viewModel.refreshVideogames()
                 }
                 List {

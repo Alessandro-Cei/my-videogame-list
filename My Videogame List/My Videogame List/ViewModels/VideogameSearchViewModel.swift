@@ -8,15 +8,18 @@
 import SwiftUI
 
 extension VideogameSearchView {
-        
+    
     class ViewModel: ObservableObject {
         
         @Published var gameList: [Game] = []
         @Published var error: Error?
         @Published var search = ""
+        @Published var debouncedSearch = ""
         private let APIKey = Private.APIKey
         private var page = 0
+        
         init() {
+            setupSearchDebounce()
             loadData()
         }
         
@@ -45,6 +48,14 @@ extension VideogameSearchView {
             page = 0
             loadData()
         }
+        
+        func setupSearchDebounce() {
+            debouncedSearch = self.search
+            $search
+                .debounce(for: .seconds(1.0), scheduler: RunLoop.main)
+                .assign(to: &$debouncedSearch)
+        }
+        
     }
     
 }
