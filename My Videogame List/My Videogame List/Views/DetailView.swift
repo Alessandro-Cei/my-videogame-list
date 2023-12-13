@@ -22,7 +22,7 @@ struct DetailView: View {
                 VStack (spacing: 10){
                     Spacer()
                     Text(game.name)
-                        .multilineTextAlignment(.leading)
+                        .multilineTextAlignment(.center)
                         .font(.largeTitle)
                     AsyncImage(url: URL(string: game.backgroundImage))
                         .scaledToFit()

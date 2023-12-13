@@ -29,21 +29,24 @@ struct RegistrationView: View {
                 TextField(text: $email, label: {
                     Text("Email")
                 })
-                .textFieldStyle(.roundedBorder)
+                .padding(5)
+                .overlay(RoundedRectangle(cornerRadius: 5).stroke(lineWidth: 1).foregroundColor(.gray))
                 .padding(.horizontal, 50)
                 .padding(.vertical, 10)
                 SecureField(text: $password, label: {
                     Text("Password")
                 })
                 .textContentType(.password)
-                .textFieldStyle(.roundedBorder)
+                .padding(5)
+                .overlay(RoundedRectangle(cornerRadius: 5).stroke(lineWidth: 1).foregroundColor(.gray))
                 .padding(.horizontal, 50)
                 .padding(.vertical, 10)
                 SecureField(text: $confirmPassword, label: {
                     Text("Confirm password")
                 })
                 .textContentType(.password)
-                .textFieldStyle(.roundedBorder)
+                .padding(5)
+                .overlay(RoundedRectangle(cornerRadius: 5).stroke(lineWidth: 1).foregroundColor(.gray))
                 .padding(.horizontal, 50)
                 .padding(.vertical, 10)
                 Spacer()
@@ -81,4 +84,5 @@ struct RegistrationView: View {
 
 #Preview {
     RegistrationView(user: .constant(nil))
+        .environmentObject(LoginView.ViewModel())
 }
