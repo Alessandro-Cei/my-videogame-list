@@ -18,18 +18,17 @@ struct VideogameSearchView: View {
         NavigationStack {
             VStack (spacing: 0) {
                 LabeledContent(content: {
-                    TextField("Searchbar", text: $viewModel.search, prompt: Text("Search"))
+                    TextField("Searchbar", text: $viewModel.search, prompt: Text("Search").foregroundColor(.gray).font(.title3))
                 }, label: {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(Color(UIColor.systemGray))
+                        .font(.title3)
                 })
-                .padding(5)
-                .background(.white)
-                .cornerRadius(5)
-                .overlay(RoundedRectangle(cornerRadius: 5).stroke(lineWidth: 1).foregroundColor(Color(UIColor.systemGray4)))
-                .padding(.horizontal)
-                .padding(.top, 10)
-                .padding(.bottom, 1)
+                .padding(7)
+                .background(Color(UIColor.systemGray5))
+                .cornerRadius(10)
+                .padding(.bottom, 10)
+                .padding(.horizontal, 20)
                 .onChange(of: viewModel.debouncedSearch) {
                     viewModel.refreshVideogames()
                 }
