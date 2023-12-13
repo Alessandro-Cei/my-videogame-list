@@ -1,5 +1,5 @@
 //
-//  VideogameSearchView.swift
+//  BrowsingView.swift
 //  My Videogame List
 //
 //  Created by alessandro on 03/12/23.
@@ -24,11 +24,11 @@ struct BrowsingView: View {
                         .foregroundColor(Color(UIColor.systemGray))
                         .font(.title3)
                 })
-                .padding(7)
+                .padding(6)
                 .background(Color(UIColor.systemGray5))
                 .cornerRadius(10)
                 .padding(.bottom, 10)
-                .padding(.horizontal, 20)
+                .padding(.horizontal, 15)
                 .onChange(of: viewModel.debouncedSearch) {
                     viewModel.refreshVideogames()
                 }

@@ -17,7 +17,7 @@ struct ContentView: View {
             TabView {
                 BrowsingView()
                     .tabItem {
-                        Label("Search", systemImage: "magnifyingglass")
+                        Label("Browser", systemImage: "magnifyingglass")
                     }
                 CollectionView()
                     .tabItem {
