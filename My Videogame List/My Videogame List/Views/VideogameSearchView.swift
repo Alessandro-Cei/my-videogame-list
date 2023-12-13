@@ -19,7 +19,6 @@ struct VideogameSearchView: View {
             List {
                 ForEach(viewModel.gameList, id: \.self) { game in
                     VideogameRow(urlString: game.backgroundImage, title: game.name)
-                        .frame(height: 100)
                         .onAppear() {
                             //Pagination
                             if game == viewModel.gameList.last {
@@ -32,7 +31,9 @@ struct VideogameSearchView: View {
                             isPresented = true
                         }
                 }
+                .frame(height: 50)
             }
+            .listStyle(.insetGrouped)
             .redacted(reason: viewModel.gameList.isEmpty ? .placeholder : [])
             .refreshable {
                 viewModel.refreshVideogames()

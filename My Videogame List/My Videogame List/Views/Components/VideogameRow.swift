@@ -13,17 +13,22 @@ struct VideogameRow: View {
     var title: String
     
     var body: some View {
-        GeometryReader { geo in
-            HStack (spacing: 10){
-                AsyncImage(url: URL(string: urlString))
-                .frame(width: geo.size.width * 0.25, height: geo.size.width * 0.25)
-                .cornerRadius(20)
-                Text(title)
-                    .multilineTextAlignment(.leading)
-                    .font(.title2)
-                Spacer()
+        HStack (spacing: 10){
+            AsyncImage(url: URL(string: urlString)) { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 50, height: 50)
+                    .cornerRadius(10)
+            } placeholder: {
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(width: 50, height: 50)
+                    .foregroundColor(Color(.systemGray5))
             }
-            .padding()
+            Text(title)
+                .multilineTextAlignment(.leading)
+                .font(.subheadline)
+            Spacer()
         }
     }
 }

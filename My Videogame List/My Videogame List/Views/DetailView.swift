@@ -24,10 +24,17 @@ struct DetailView: View {
                     Text(game.name)
                         .multilineTextAlignment(.center)
                         .font(.largeTitle)
-                    AsyncImage(url: URL(string: game.backgroundImage))
-                        .scaledToFit()
-                        .frame(width: geo.size.width * 0.5, height: geo.size.width * 0.5)
-                        .cornerRadius(20)
+                    AsyncImage(url: URL(string: game.backgroundImage)) { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: geo.size.width * 0.5, height: geo.size.width * 0.5)
+                            .cornerRadius(20)
+                    } placeholder: {
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: geo.size.width * 0.5, height: geo.size.width * 0.5)
+                            .foregroundColor(Color(.systemGray5))
+                    }
                     Spacer()
                     Spacer()
                     Button(action: {
