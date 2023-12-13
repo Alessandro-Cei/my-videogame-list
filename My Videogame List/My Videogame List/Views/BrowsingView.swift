@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct VideogameSearchView: View {
+struct BrowsingView: View {
     
     @StateObject private var viewModel = ViewModel()
     @State var isPresented = false
@@ -90,5 +90,5 @@ struct VideogameSearchView: View {
 }
 
 #Preview {
-    VideogameSearchView()
+    BrowsingView()
 }

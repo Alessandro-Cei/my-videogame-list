@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension VideogameSearchView {
+extension BrowsingView {
     
     class ViewModel: ObservableObject {
         

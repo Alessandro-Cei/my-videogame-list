@@ -15,7 +15,7 @@ struct ContentView: View {
     var body: some View {
         if (user != nil) {
             TabView {
-                VideogameSearchView()
+                BrowsingView()
                     .tabItem {
                         Label("Search", systemImage: "magnifyingglass")
                     }
