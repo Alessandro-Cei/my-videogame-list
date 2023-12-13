@@ -13,13 +13,13 @@ struct CollectionView: View {
     @State var isPresented = false
     @State private var isAlertPresented = false
     @State var focusedGame: Game = Game(gameId: 3498, name: "", backgroundImage: "")
+    @State var search = ""
     
     var body: some View {
         NavigationStack {
             List {
-                ForEach(viewModel.gameList, id: \.self) { game in
+                ForEach(searchResults, id: \.self) { game in
                     VideogameRow(urlString: game.backgroundImage, title: game.name)
-                        .frame(height: 100)
                         .onAppear() {
                             //Pagination
                         }
@@ -29,7 +29,9 @@ struct CollectionView: View {
                             isPresented = true
                         }
                 }
+                .frame(height: 50)
             }
+            .searchable(text: $search)
             .redacted(reason: viewModel.gameList.isEmpty ? .placeholder : [])
             .refreshable {
                 viewModel.refreshVideogames()
@@ -47,7 +49,7 @@ struct CollectionView: View {
             .alert(isPresented: $isAlertPresented, content: {
                 Alert(
                     title: Text("Error"),
-                    message: Text("")
+                    message: Text(viewModel.error?.localizedDescription ?? "")
                 )
             })
             .navigationTitle("Your collection")
@@ -67,6 +69,13 @@ struct CollectionView: View {
             }
             
         }
+    }
+    var searchResults: [Game] {
+            if search.isEmpty {
+                return viewModel.gameList
+            } else {
+                return viewModel.gameList.filter { $0.name.uppercased().contains(search.uppercased()) }
+            }
     }
 }
 

@@ -12,6 +12,7 @@ struct DetailView: View {
     @StateObject private var viewModel = ViewModel()
     @Binding var game: Game
     @Binding var isPresented: Bool
+    @State private var isAlertPresented = false
     
     var type: ButtonType
     
@@ -42,12 +43,16 @@ struct DetailView: View {
                         case .addGame:
                             Task {
                                 try await viewModel.addGame(gameId: game.gameId)
-                                isPresented.toggle()
+                                if viewModel.error == nil {
+                                    isPresented.toggle()
+                                }
                             }
                         case .removeGame:
                             Task {
                                 try await viewModel.removeGame(gameId: game.gameId)
-                                isPresented.toggle()
+                                if viewModel.error == nil {
+                                    isPresented.toggle()
+                                }
                             }
                         }
                     }, label: {
@@ -63,8 +68,18 @@ struct DetailView: View {
                 .padding()
                 Spacer()
             }
+            .onReceive(viewModel.$error, perform: { error in
+                if (error != nil) {
+                    isAlertPresented.toggle()
+                }
+            })
+            .alert(isPresented: $isAlertPresented, content: {
+                Alert(
+                    title: Text("Error"),
+                    message: Text(viewModel.error?.localizedDescription ?? "")
+                )
+            })
         }
-        
     }
 }
 

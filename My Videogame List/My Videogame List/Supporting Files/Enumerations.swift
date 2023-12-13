@@ -14,6 +14,7 @@ enum DatabaseError: Error, LocalizedError {
     case failedLogin
     case failedSignUp
     case failedUserRetrieval
+    case duplicateRecord
     case unknown(Error)
     
     var errorDescription: String? {
@@ -28,6 +29,8 @@ enum DatabaseError: Error, LocalizedError {
             return "Failed signup attempt."
         case .failedUserRetrieval:
             return "Failed user retrieval."
+        case .duplicateRecord:
+            return "This game is already in your collection."
         case .unknown(let error):
             return error.localizedDescription
         }
