@@ -14,8 +14,8 @@ extension CollectionView {
         
         @Published var gameList: [Game] = []
         @Published var error: Error?
+        @Published var gameIDs: [String] = []
         private var user: User?
-        private var gameIDs: [String] = []
         
         init() {
             loadData()

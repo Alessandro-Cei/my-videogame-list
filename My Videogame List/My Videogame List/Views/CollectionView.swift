@@ -28,11 +28,11 @@ struct CollectionView: View {
                             focusedGame = game
                             isPresented = true
                         }
+                        .redacted(reason: viewModel.gameList.count == viewModel.gameIDs.count ? [] : .placeholder)
                 }
                 .frame(height: 50)
             }
             .searchable(text: $search)
-            .redacted(reason: viewModel.gameList.isEmpty ? .placeholder : [])
             .refreshable {
                 viewModel.refreshVideogames()
             }
@@ -52,7 +52,7 @@ struct CollectionView: View {
                     message: Text(viewModel.error?.localizedDescription ?? "")
                 )
             })
-            .navigationTitle("Your collection")
+            .navigationTitle("My collection")
         }
         .sheet(isPresented: $isPresented){
             NavigationStack {
